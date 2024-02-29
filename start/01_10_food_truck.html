@@ -15,8 +15,21 @@
   <ul id="combined-menu"></ul>
 
   <script>
-    // Write your code here
 
+    function foodTruckMenus(menus) {
+        return new Set(menus.flat());
+    }
+    const vendor1 = ['pizza', 'pasta'];
+    const vendor2 = ['pizza', 'lobster'];
+    const vendor3 = ['naan', 'chole', 'samosa'];
+    const vendor4 = ['noodles', 'pasta', 'dumplings'];
+
+    const combinedMenuUl = document.querySelector('#combined-menu'); 
+    for (const item of foodTruckMenus([vendor1, vendor2, vendor3, vendor4])) {
+      const li = document.createElement('li');
+      li.textContent = item;
+      combinedMenuUl.appendChild(li);
+    }
   </script>
 </body>
 

@@ -17,8 +17,17 @@
   <button id="green">Green</button>
 
   <script>
-    // Write your code here
+    function changeColor(color) {
+      document.body.style.backgroundColor = color;
+    }
 
+    const buttons = document.querySelectorAll('button');
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const buttonColor = button.getAttribute('id');
+        changeColor(buttonColor);
+      })
+    }
   </script>
 </body>
 

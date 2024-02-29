@@ -15,7 +15,26 @@
   <button id="next-stop">Next Stop</button>
 
   <script>
-    // Write your code here
+    
+    function* nextStop() {
+      const stops = ['1', '2', '3', '4', '5']
+        const numStops = stops.length;
+        for (let i = 0; i < numStops; i++) {
+          yield stops[i];
+        }
+    }
+
+
+    const button = document.querySelector('#next-stop');
+    const nextStopGen = nextStop();
+    button.addEventListener('click', () => {
+      const next = nextStopGen.next();
+      if (next.done) {
+        button.setAttribute('disabled', true);
+      } else {
+        button.innerText = next.value;
+      }
+    });
 
   </script>
 </body>

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="five_friends_styles.css" />
   <title>Five Friends</title>
 </head>
 
@@ -15,8 +16,42 @@
   <div id="timeline"></div>
 
   <script>
-    // Write your code here
-    
+    const timeline = document.querySelector('#timeline');
+    const RANDOM_USER_URL = 'https://randomuser.me/api/?results=5';
+    async function fetchUsers() {
+      const randomUsersResp = await fetch(RANDOM_USER_URL);
+      const randomUsers = await randomUsersResp.json();
+      return randomUsers;
+    }
+
+    async function showFriends() {
+      const users = await fetchUsers();
+      for (const user of users.results) {
+        console.log(user.name.first);
+        const userContainer = document.createElement('section');
+        userContainer.classList.add('user');
+        const imageContainer = document.createElement('figure');
+        imageContainer.classList.add('user-image');
+        const image = document.createElement('img');
+        image.src = user.picture.medium;
+        const userDetailsContainer = document.createElement('div');
+        userDetailsContainer.classList.add('user-details');
+        const userName = document.createElement('p');
+        userName.textContent = user.name.first + ' ' + user.name.last;
+        const userEmail = document.createElement('p');
+        userEmail.textContent = user.email;
+        const userPhone = document.createElement('p');
+        userPhone.textContent = user.phone;
+        userDetailsContainer.appendChild(userName);
+        userDetailsContainer.appendChild(userEmail);
+        userDetailsContainer.appendChild(userPhone);
+        imageContainer.appendChild(image);
+        userContainer.appendChild(imageContainer);
+        userContainer.appendChild(userDetailsContainer);
+        timeline.appendChild(userContainer);
+      }
+    }
+    showFriends();
   </script>
 </body>
 

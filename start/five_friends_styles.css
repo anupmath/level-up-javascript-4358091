@@ -1,0 +1,16 @@
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+
+}
+
+.user-details {
+
+}
+
+.user-details .name {
+  font-weight: bold;
+}

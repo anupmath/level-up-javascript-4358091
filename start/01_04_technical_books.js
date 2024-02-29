@@ -31,3 +31,28 @@ class Book {
 }
 
 // Write your code here
+
+class TechnicalBook extends Book {
+
+  constructor(title, author, ISBN, numCopies, edition) {
+    super(title, author, ISBN, numCopies);
+    this.edition = edition;
+  }
+
+  getEdition() {
+    return `The current version of this book is ${this.edition}`;
+  }
+}
+
+const technicalBook1 = new TechnicalBook('Fluent Python', 'Luciano Ramalho', 12345, 10, 1.0);
+const technicalBook2 = new TechnicalBook('You Don’t Know JS', 'Ryan Simpson', 12, 5, 2.0)
+
+console.log(technicalBook1.availability);
+technicalBook1.sell(5);
+console.log(technicalBook1.availability);
+technicalBook1.restock();
+console.log(technicalBook1.availability);
+technicalBook1.sell(10);
+console.log(technicalBook1.availability);
+
+console.log(technicalBook2.getEdition());
